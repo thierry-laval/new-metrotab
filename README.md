@@ -1,27 +1,21 @@
-# The current status on new metroTab <img src="icon_128.png" align="right" alt="" width="128">
+# Réparer en permettant de sauvegarder ses paramètres dans le plugins nouvelle metrotab v1.1.0 de Google Chrome (dév) <img src="icon_128.png" align="right" alt="" width="128">
 
-If you got here through the listing for new metroTab on the Chrome Web Store (or any other replica), you probably want to know how to fix it, or if there are any plans to do it soon.
+nouvelle metroTab v1.1.0 https://chrome.google.com/webstore/detail/new-metrotab/oogmkbpkoblajkomflhkkdmbfggdmefd?hl=fr
 
-> **TL;DR**: no. I can't do anything to fix the published extension, because the listing in the Chrome Web Store it's not mine anymore. But I can still help.
+Corriger le nouveau metroTab sur le Chrome Web Store ?
 
-I transferred the extension at the end of 2013, and with that, the extension was removed from my dashboard. That agreement also made me forfeit all the additional development assets and private keys, so there's nothing I can do directly to get it back, and I can't make a copy and continue development either. I mean, I can, but the extension is not mine anymore and the counterpart can come one day, claim it, and we're back to the beginning.
+### Comment sauvegarder les tuiles ?
 
-However, the extension still keep most of its original code, so I think I can offer some support through the Issues of this repository.
+new metroTab stocke les tuiles dans la base de données indexée du navigateur pour l'extension, de sorte que nous pouvons les récupérer à partir de là.
 
-I still have the intention to make a better new tab page extension (because I use Firefox, and its new tab page can do better), so you can keep an eye on this github account. This time I'll make it open source too, and try to set it with a better permission structure. Looking at the amount of permissions it requests, if I didn't knew what does it have inside, I'd probably not install it.
+> La procédure suivante exécute un script externe dans le contexte de la page. Ne faites pas ce genre de procédure sur d'autres sites comme facebook ou votre site de messagerie si vous ne savez pas **exactement, ligne par ligne**, ce que fait le code que vous utilisez.
 
-## How to backup my tiles?
+Suivez ces étapes pour télécharger le fichier de sauvegarde des tuiles :
 
-The main concern in the reviews right now is this. new metroTab stores the tiles in the browser's indexedDB for the extension, so we can retrieve them from there.
-
-> The following procedure is running a external script in the context of the page. Please don't do this kind of procedure in other sites like facebook or your email website if you don't **exactly, line per line**, know what the code you're using does.
-
-Follow these steps to download the tile backup file:
-
-1. Go to the options (Hover on the user badge > Options)
-2. Open a context menu (Right click) anywhere on the options page, and select the "Inspect" option. It's usually the last one. The options screen should split and some code should appear.
-3. In this new area, click on the "Console" tab.
-4. Paste this code:
+1. Allez dans les options (Survolez le badge de l'utilisateur > Options)
+2. Ouvrez un menu contextuel (clic droit) n'importe où sur la page des options, et sélectionnez l'option "Inspecter". C'est généralement la dernière. L'écran des options devrait se diviser et du code devrait apparaître.
+3. Dans cette nouvelle zone, cliquez sur l'onglet "Console".
+4. Collez ce code :
 
 ```js
 MT.miniDB.cursor().then(tiles => {
@@ -32,11 +26,11 @@ MT.miniDB.cursor().then(tiles => {
   anchor.click();
 });
 ```
-5. Press enter to run the code. After pressing enter, the browser's download prompt should appear. Save that file.
+5. Appuyez sur la touche Entrée pour exécuter le code. Après avoir appuyé sur la touche Entrée, l'invite de téléchargement du navigateur doit apparaître. Enregistrez ce fichier.
 
-## What about the other options?
+## Qu'en est-il des autres options ?
 
-Follow the same procedure, but run this other snippet:
+Suivez la même procédure, mais exécutez cet autre extrait :
 
 ```js
 (function() {
